@@ -11,8 +11,6 @@ import android.widget.TextView;
 import java.util.Collections;
 import java.util.List;
 
-import static android.support.v7.widget.RecyclerView.ViewHolder;
-
 /**
  * Created by uspurbr on 4/10/15.
  */
@@ -26,7 +24,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     }
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.custom_row,parent, false);
+        View view = inflater.inflate(R.layout.item_navigation_list,parent, false);
         MyViewHolder holder = new MyViewHolder(view);
         return holder;
     }

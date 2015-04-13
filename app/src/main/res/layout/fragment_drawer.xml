@@ -5,29 +5,33 @@
     android:background="@color/drawer_background"
     android:orientation="vertical"
     tools:context="com.toolbartest.DrawerFragment">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="140dp"
-    android:background="#FFF">
-    <ImageView
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitCenter"
+        android:layout_height="140dp"
+        android:background="#FFF">
 
-        android:src="@drawable/coursehome_bg"/>
-    <TextView
-        android:padding="8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:textSize="16sp"
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/coursehome_bg" />
 
-        android:text="@string/course_title"/>
-</RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="8dp"
+            android:text="@string/course_title"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/drawerList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
     </android.support.v7.widget.RecyclerView>
+
 </LinearLayout>
