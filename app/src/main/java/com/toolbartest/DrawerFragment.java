@@ -2,6 +2,7 @@ package com.toolbartest;
 
 
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
@@ -15,6 +16,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import org.lucasr.dspec.DesignSpec;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +60,12 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
         data.add(new ListObject("Notes", R.drawable.ic_action_ico_notes));
         data.add(new ListObject("Table of Contents",R.drawable.ic_action_ico_toc));
         data.add(new ListObject("Glossary", R.drawable.ic_action_ico_glossary));
+
+        //designSpec
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2){
+            DesignSpec designSpec = DesignSpec.fromResource(layout, R.raw.spec);
+            layout.getOverlay().add(designSpec);
+        }
 
         // NOTE: We may not need to send the click listener for a ListView.
         // Need more research on RecyclerView.
