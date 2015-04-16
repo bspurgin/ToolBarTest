@@ -11,11 +11,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import org.lucasr.dspec.DesignSpec;
 
@@ -26,7 +24,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DrawerFragment extends Fragment implements View.OnClickListener {
+public class DrawerFragment extends Fragment {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -69,7 +67,7 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
 
         // NOTE: We may not need to send the click listener for a ListView.
         // Need more research on RecyclerView.
-        adapter = new RecyclerAdapter(parent, data, this);
+        adapter = new RecyclerAdapter(parent, data);
 
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(parent));
@@ -109,15 +107,4 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    @Override
-    public void onClick(View v) {
-        if (null != mListener) {
-            // NOTE: This is UGLY. Thanks to RecyclerView.
-            // Need to optimize this!
-            TextView textView = (TextView) v.findViewById(R.id.listText);
-            mListener.onNavigationChange(textView.getText().toString());
-        } else {
-            Log.e("TEST", "No Listener!");
-        }
-    }
 }
