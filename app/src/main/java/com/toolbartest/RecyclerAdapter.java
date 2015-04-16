@@ -18,19 +18,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     private LayoutInflater mInflater;
     private List<ListObject> mData = Collections.emptyList();
-    private View.OnClickListener mItemClickListener;
+    private Context context;
 
     public RecyclerAdapter(Context context,
-                           List<ListObject> data,
-                           View.OnClickListener itemClickListener){
+                           List<ListObject> data){
         mInflater = LayoutInflater.from(context);
+        this.context = context;
         mData = data;
-        mItemClickListener = itemClickListener;
     }
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.item_navigation_list,parent, false);
-        MyViewHolder holder = new MyViewHolder(view, mItemClickListener);
+        MyViewHolder holder = new MyViewHolder(view);
         return holder;
     }
 
@@ -46,17 +45,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         return mData.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView title;
         ImageView listIcon;
 
-        public MyViewHolder(View itemView,
-                            View.OnClickListener itemClickListener) {
+        public MyViewHolder(View itemView) {
             super(itemView);
             title = (TextView)itemView.findViewById(R.id.listText);
             listIcon = (ImageView)itemView.findViewById(R.id.listIcon);
-            itemView.setOnClickListener(itemClickListener);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+                MainActivity mainActivity = (MainActivity) context;
+                mainActivity.switchFragment(getPosition());
         }
     }
 }

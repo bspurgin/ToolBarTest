@@ -3,17 +3,24 @@ package com.toolbartest;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
-public class MainActivity extends ActionBarActivity implements DrawerFragment.OnNavigationChangeListener {
+public class MainActivity extends ActionBarActivity{
 
     private Toolbar mToolbar;
     private TextView mTextView;
     private DrawerLayout mDrawer;
+    final private static int COURSE_HOME = 0;
+    final private static int ASSIGNMENT_SCREEN = 1;
+    final private static int SCORES_SCREEN = 2;
+    final private static int NOTES_SCREEN = 3;
+    final private static int TOC_SCREEN = 4;
+    final private static int GLOSSARY = 5;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +36,35 @@ public class MainActivity extends ActionBarActivity implements DrawerFragment.On
         DrawerFragment drawerFragment = (DrawerFragment)getSupportFragmentManager().findFragmentById(R.id.drawer_fragment);
         
         drawerFragment.setUp((DrawerLayout)findViewById(R.id.drawer_layout), mToolbar);
+    }
+
+    public void switchFragment(int position){
+        switch (position){
+            case COURSE_HOME:
+                mTextView.setText("Course Home");
+                break;
+
+            case ASSIGNMENT_SCREEN:
+                mTextView.setText("Assignments");
+                break;
+
+            case SCORES_SCREEN:
+                mTextView.setText("Scores");
+                break;
+
+            case NOTES_SCREEN:
+                mTextView.setText("Notes");
+                break;
+
+            case TOC_SCREEN:
+                mTextView.setText("Table of Contents");
+                break;
+
+            case GLOSSARY:
+                mTextView.setText("Glossary");
+                break;
+        }
+            mDrawer.closeDrawers();
     }
 
 
@@ -54,10 +90,6 @@ public class MainActivity extends ActionBarActivity implements DrawerFragment.On
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onNavigationChange(String label) {
-        Log.d("TEST", "Clicked nav item: " + label + ". Change fragment!");
-        mDrawer.closeDrawers();
-        mTextView.setText(label);
-    }
+
+
 }
